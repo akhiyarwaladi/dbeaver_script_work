@@ -44,6 +44,10 @@ where tto.tbto_create_date between '2021-01-16 04:00:00' and '2021-01-16 06:30:0
 and tto.tbto_ponta_id = '9990010491225100'
 
 
+select * from tb_transaction_order tto 
+where tto.tbto_voucher_code = 'A53999BA91NV'
+
+
 
 
 

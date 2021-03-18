@@ -220,18 +220,7 @@ where tbtpp_bonus_point is not null
 and tbtpp_bonus_point > 0
 order by tbtpp_create_date desc
 
-select * from tb_transaction_order tto 
 
-
-
-select * from tb_transaction_order tto 
-where tto.tbto_no = 'O-210316-AGKVLVR'
-
-select * from tb_transaction_promotion_process ttpp 
-where ttpp.tbto_id = 2979549
-
-select * from tb_transaction_order_product ttop 
-where ttop.tbto_id = 2979549
 
 
 select tto.tbto_create_date, ttds.tbtds_create_date, tto.tbto_ponta_id, 
@@ -245,14 +234,15 @@ on ttd.tbtd_id = ttds.tbtd_id
 left join tb_transaction_promotion_process ttpp 
 on ttpp.tbto_id  = tto.tbto_id
 where tto.tbto_create_date between '2021-01-01' and '2021-03-18'
-and tto.tbto_status = 18
+--and tto.tbto_status = 18
 and ttds.tbtds_status = 15
 and ttpp.tbtpp_juklak is not null
 and tto.tbto_ponta_id is not null
-and tbtpp_name like '%SKI%'
+and ttpp.tbtpp_name like '%SKI%'
 
 
-
+select * from tb_transaction_order tto 
+where tto.tbto_voucher_code = 'A53999BA91NV'
 
 
 

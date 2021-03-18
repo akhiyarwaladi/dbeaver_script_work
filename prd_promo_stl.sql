@@ -17,7 +17,7 @@ where tmpa.tbmproav_description like 'SKI%'
 
 select * from tb_master_promotion_invoice tmpi 
 
-
+ 
 select tmp.tbmpro_no_juklak, tmp.tbmpro_name, tmp.tbmpro_create_date, tmp.tbmpro_label, 
 tmpi.tbmproi_invoice_number 
 from tb_master_promotion tmp 
