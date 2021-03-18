@@ -242,7 +242,7 @@ and ttpp.tbtpp_name like '%SKI%'
 
 
 select * from tb_transaction_order tto 
-where tto.tbto_voucher_code = 'A53999BA91NV'
+where tto.tbto_no = 'O-210316-AGLPVMZ'
 
 
 
