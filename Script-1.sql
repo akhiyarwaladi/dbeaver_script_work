@@ -64,6 +64,10 @@ order by ttp.tbtp_create_date asc
 
 
 
+select * from tb_transaction_payment ttp 
+where ttp.tbtp_transaction_id = 'T-210309-WXLRX'
+
+
 
 
 

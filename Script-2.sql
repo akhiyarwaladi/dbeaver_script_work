@@ -15,7 +15,7 @@ from wec_sale_shipment
 JOIN wec_status on wec_sale_shipment.wss_status = wec_status.ws_code
 JOIN WEC_SALE_HEAD ON wec_sale_shipment.wss_wsh_order_id = WSH_ORDER_ID
 JOIN OSHOP.WEC_TRANS ON wec_sale_shipment.wss_wsh_order_id = WTRN_WSH_ORDER_ID
-where wec_sale_shipment.wss_shipment_id in ('S-210103-AGQPHXT') 
+where wec_sale_shipment.wss_shipment_id in ('S-210315-AGZLFGN') 
 ORDER BY WS_DESCRIPTION;
 
 SELECT * FROM WEC_SALE_HEAD
