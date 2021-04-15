@@ -38,5 +38,22 @@ from tb_transaction_voucher_issued ttvi
 order by tbtvi_created_date desc
 
 
+select * 
+from tb_master_promotion_invoice tmpi 
+where tmpi.tbmproi_sku_bundle != ''
+and tbmproi_promo_type = '901'
+
+
+-- ini untuk join ke order product pakai invoice number
+-- kalo misal dia beli 1 bundle doang, di tbtqcu_qty_usage nya tertulis satu
+---- tapi di order product dia tertulis qty 2
+
+-- lso plu di alfabi log oos untuk join ke master product
+
+
+select *	
+from tb_transaction_benefit_qty_issued ttbqi 
+
+
 
 
