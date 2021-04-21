@@ -29,7 +29,7 @@ and tbmpro_name like '%SKI%'
 
 select * 
 from tb_master_promotion_invoice tmpi 
-where tmpi.tbmproi_invoice_number = 'SAT://T-C21-0517'
+where tmpi.tbmproi_invoice_number = 'SAT://T-C21-2816'
 
 select * 
 from tb_transaction_voucher_issued ttvi 
