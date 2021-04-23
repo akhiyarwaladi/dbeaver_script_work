@@ -1,0 +1,5 @@
+SELECT rp_gen_conv.CODE2RECEIPT('XCW4') FROM dual
+
+SELECT rp_gen_conv.RECEIPT2CODE(1780) FROM DUAL
+
+SELECT * FROM dual

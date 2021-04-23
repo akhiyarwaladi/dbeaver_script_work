@@ -1,0 +1,67 @@
+
+WITH transaksi AS 
+(
+SELECT char2 AS MEMBER,
+char3 AS plu, 
+trim(char1||num2||num3||date1) AS struk,
+num4 netsales,
+num5 promo
+FROM ztampungan WHERE pk = 'test_dn'
+),
+
+produk AS (
+SELECT char1 AS item, char2 AS descp,char4 AS tipe, char6 AS kate, char8 AS dept, char9 AS merek,char10 AS kat  
+FROM ZTAMPUNGAN z  WHERE pk = 'itemDNA' AND char10 IS NOT null
+),
+
+cust AS (
+SELECT no_kartu, JENIS_KELAMIN , to_char(sysdate, 'YYYY') -  to_char(EXTRACT (YEAR FROM TGL_LAHIR)) AS umur, STATUS_NIKAH FROM MASTER_CUST mc 
+)
+
+
+--SELECT dept, tipe,kat , count(MEMBER) FROM (
+
+SELECT MEMBER,kate, dept, tipe,kat, sum(COOKING), sum(HAVEBABY),sum(GAMES),
+CASE WHEN SUM(COOKING)>0 THEN 'Y' ELSE 'N' END COOKING ,
+CASE WHEN SUM(HAVEBABY)>0 THEN 'Y' ELSE 'N' END HAVEBABY,
+CASE WHEN SUM(GAMES)>0 THEN 'Y' ELSE 'N' END GAMES,
+sum(COOKINGSPEND) cookspend,sum(HAVEBABYSPEND)babyspend,sum(GAMESSPEND)gamespend,
+SUM(COOKINGSPEND)+SUM(HAVEBABYSPEND)+SUM(GAMESSPEND) TOTALSPEND,
+count(DISTINCT struk) struk
+FROM (
+
+SELECT MEMBER,
+CASE WHEN  jenis_kelamin = 0 THEN 'WANITA'
+WHEN jenis_kelamin = 1 THEN 'PRIA'
+ELSE 'NO DATA'
+END JENIS_KELAMIN, 
+umur, status_nikah ,plu,descp,tipe,kate,kat, dept,merek,struk,netsales,promo,
+CASE WHEN kat = 'COOKING' THEN 1 ELSE 0 END COOKING,
+CASE WHEN kat = 'HAVE BABY' THEN 1 ELSE 0 END HAVEBABY,
+CASE WHEN KAT = 'GAMES' THEN 1 ELSE 0 END GAMES,
+CASE WHEN kat = 'COOKING' THEN netsales ELSE 0 END COOKINGSPEND,
+CASE WHEN kat = 'HAVE BABY' THEN netsales ELSE 0 END HAVEBABYSPEND,
+CASE WHEN KAT = 'GAMES' THEN netsales ELSE 0 END GAMESSPEND
+
+FROM transaksi 
+LEFT JOIN cust ON MEMBER = no_kartu
+LEFT JOIN produk ON plu = item
+
+
+)
+GROUP BY MEMBER,jenis_kelamin, umur, status_nikah, kate, dept, tipe, kat
+
+--)
+--WHERE COOKING = 'Y' AND HAVEBABY = 'Y' AND GAMES = 'N'
+--GROUP BY dept, tipe,kat
+
+
+SELECT rto.TRO_DATE, rto.TRO_KD_STORE, rto.TRO_NO_BON, rto.TRO_KODE_KASIR, rto.TRO_POS_NOREF, rto.TRO_PLU, 
+rto.TRO_NET, TRO_STATUS_SAPA 
+FROM REPORT.RPT_TRANS_OSHOP rto 
+where
+    rto.TRO_DATE between '01apr21' and '30apr21'
+ORDER BY rto.TRO_DATE desc
+
+
+

@@ -50,5 +50,32 @@ where tto.tbto_voucher_code = 'A53999BA91NV'
 
 
 
+select * from tb_transaction_order tto
+where tto.tbto_create_date between '2021-04-22' and '2021-04-23'
+
+
+
+
+-- check transaction paid by ponta id
+select 
+	ttp.tbtp_create_date, ttp.tbto_id, ttp.tbmp_id, ttp.tbtp_status, ttp.tbtp_transaction_id, ttp.tbtp_ponta_amount, 
+	tto.tbto_amount_final, tbtp_transaction_id, tto.tbto_ponta_id, tto.tbto_no, tmp.tbmp_en, tms.tbms_en 
+from tb_transaction_payment ttp 
+	left join tb_transaction_order tto on ttp.tbto_id = tto.tbto_id
+	left join tb_master_payment tmp on tmp.tbmp_id = ttp.tbmp_id 
+	left join tb_master_status tms on tms.tbms_id = ttp.tbtp_status 
+where 
+	ttp.tbtp_create_date between '2021-04-01' and '2021-04-30'
+	and tbtp_ponta_amount is not null
+order by tto.tbto_no desc
+
+
+
+
+
+
+
+
+
 
 

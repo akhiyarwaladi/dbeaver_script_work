@@ -1,0 +1,1 @@
+SELECT * FROM ZTAMPUNGAN z WHERE pk = 'payment_ivan'
